@@ -1,0 +1,17 @@
+T01 | PASS | Lëvizje normale djathtas | pos=(2,1) t=89
+T02 | PASS | Marrja e sendit kur hyn në qelizën I | hasItem=true
+T03 | PASS | Fitore e hajdutit: send + dalje, pikët 100+2*t+50 | status=THIEF_WINS score=326
+T04 | PASS | Lëvizje në mur refuzohet, hajduti nuk lëviz, koha vazhdon | pos=(1,1) msg=BLOCKED
+T05 | PASS | Veprim me buxhet < kosto refuzohet dhe buxheti nuk ndryshon | closeDoor=false budget=1
+T06 | PASS | Dalja pa send nuk e fiton raundin | status=RUNNING
+T07 | PASS | Kapje: roja arrin qelizën e hajdutit, mbrojtësi merr 100+t (t = sekonda të mbetura) | status=THIEF_CAUGHT score=188
+T08 | PASS | Timeout: koha = 0 -> fiton mbrojtësi me 100 | status=TIMEOUT
+T09 | PASS | Dalje në sekondën e fundit konsiderohet fitore (hajduti vepron para kohës) | status=THIEF_WINS score=150
+T10 | PASS | Gjatë alarmit roja lëviz 2 qeliza/tick | guardX 4->2
+T11 | PASS | Roja brenda rrezes 3 pa pengesë ndez alarmin për 15 s | alarm=true
+T12 | PASS | Muri mes hajdutit dhe rojës bllokon detektimin | alarm=false
+T13 | PASS | Dera e mbyllur (2 pt) bllokon 8 s, pastaj hapet | closed=true blocked=true x=2 budget=5
+T14 | PASS | Nuk mund të mbyllet derë mbi hajdutin; buxheti mbetet 6 | closeDoor=false budget=6
+T15 | PASS | Buxheti rritet +1 çdo 8 s dhe nuk kalon 10 | b@8s=7 final=10 status=RUNNING
+
+REZULTATI: 15 kaluan, 0 dështuan
