@@ -1,17 +1,25 @@
 T01 | PASS | Lëvizje normale djathtas | pos=(2,1) t=89
-T02 | PASS | Marrja e sendit kur hyn në qelizën I | hasItem=true
+T02 | PASS | Marrja e sendit kur hyn në qelizën I | hasItem=true msg=ITEM
 T03 | PASS | Fitore e hajdutit: send + dalje, pikët 100+2*t+50 | status=THIEF_WINS score=326
 T04 | PASS | Lëvizje në mur refuzohet, hajduti nuk lëviz, koha vazhdon | pos=(1,1) msg=BLOCKED
-T05 | PASS | Veprim me buxhet < kosto refuzohet dhe buxheti nuk ndryshon | closeDoor=false budget=1
-T06 | PASS | Dalja pa send nuk e fiton raundin | status=RUNNING
-T07 | PASS | Kapje: roja arrin qelizën e hajdutit, mbrojtësi merr 100+t (t = sekonda të mbetura) | status=THIEF_CAUGHT score=188
+T05 | PASS | Veprim me buxhet < kosto refuzohet, buxheti nuk ndryshon, mesazhi tregon shkakun | closeDoor=false budget=1 msg=REJECTED:BUDGET
+T06 | PASS | Dalja pa send nuk e fiton raundin dhe lojtari merr mesazh | status=RUNNING msg=EXIT_NO_ITEM
+T07 | PASS | Kapje: mbrojtësi merr 100+t dhe HUD tregon të njëjtin t | status=THIEF_CAUGHT score=188 HUD t=88
 T08 | PASS | Timeout: koha = 0 -> fiton mbrojtësi me 100 | status=TIMEOUT
 T09 | PASS | Dalje në sekondën e fundit konsiderohet fitore (hajduti vepron para kohës) | status=THIEF_WINS score=150
-T10 | PASS | Gjatë alarmit roja lëviz 2 qeliza/tick | guardX 4->2
-T11 | PASS | Roja brenda rrezes 3 pa pengesë ndez alarmin për 15 s | alarm=true
+T10 | PASS | Gjatë alarmit roja lëviz saktësisht 2 qeliza/tick | guardX 4->2
+T11 | PASS | Roja brenda rrezes 3 pa pengesë ndez alarmin për 15 s, me mesazh 'ZBULUAR' | alarm=true log=[[1 s] ZBULUAR nga roja 1 - Alarm: rojet shpejtohen]
 T12 | PASS | Muri mes hajdutit dhe rojës bllokon detektimin | alarm=false
 T13 | PASS | Dera e mbyllur (2 pt) bllokon 8 s, pastaj hapet | closed=true blocked=true x=2 budget=5
-T14 | PASS | Nuk mund të mbyllet derë mbi hajdutin; buxheti mbetet 6 | closeDoor=false budget=6
-T15 | PASS | Buxheti rritet +1 çdo 8 s dhe nuk kalon 10 | b@8s=7 final=10 status=RUNNING
+T14 | PASS | Nuk mund të mbyllet derë mbi hajdutin; buxheti mbetet 6 | closeDoor=false budget=6 msg=REJECTED:THIEF_ON_DOOR
+T15 | PASS | Buxheti rritet +1 çdo 8 s dhe nuk kalon 10 | b@8s=7 final=10
+T16 | PASS | A*: roja e dërguar pas murit arrin objektivin me rrugën më të shkurtër | guard=(3,1) hapa=6
+T17 | PASS | Dera e mbyllur ndal rojën me mesazh; pas hapjes roja vazhdon | waited=true guardX=3
+T18 | PASS | Zona e sigurt: veprimet e mbrojtësit refuzohen në 5 s e para, pastaj lejohen | early=false later=true
+T19 | PASS | Niveli 1: kamera refuzohet me mesazh 'hapet në nivel më të lartë' | camera=false msg=REJECTED:NOT_ALLOWED
+T20 | PASS | Përmbledhja tregon arsyen, pikët dhe momentin e zbulimit | Roja 1 e kapi hajdutin | pikët 188 | zbulime në sekondat [1]
+T21 | PASS | Niveli 1 - Rojet (onboarding): zgjidhja e ruajtur fiton, BFS gjen zgjidhje, rruga më e shkurtër naive humb | zgjidhja=THIEF_WINS 284 (23 s), BFS=23 s naive=THIEF_CAUGHT
+T22 | PASS | Niveli 2 - Kamerat (core challenge): zgjidhja e ruajtur fiton, BFS gjen zgjidhje, rruga më e shkurtër naive humb | zgjidhja=THIEF_WINS 242 (44 s), BFS=44 s naive=THIEF_CAUGHT
+T23 | PASS | Niveli 3 - Dyert (advanced challenge): zgjidhja e ruajtur fiton, BFS gjen zgjidhje, rruga më e shkurtër naive humb | zgjidhja=THIEF_WINS 244 (43 s), BFS=43 s naive=THIEF_CAUGHT
 
-REZULTATI: 15 kaluan, 0 dështuan
+REZULTATI: 23 kaluan, 0 dështuan
