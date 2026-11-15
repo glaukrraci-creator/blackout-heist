@@ -36,6 +36,7 @@ public class BlackoutSim {
     int tickNo = 0;
     String lastMsg = "";                               // kodi i mesazhit të fundit (për testet)
     final List<String> log = new ArrayList<>();        // mesazhet që i shfaqen lojtarit
+    final List<String> logCodes = new ArrayList<>();   // kodi i çdo mesazhi (UI ngjyros sipas kodit, jo tekstit)
     final List<int[]> trail = new ArrayList<>();       // gjurma e hajdutit
     final List<Integer> detections = new ArrayList<>(); // tick-u kur ndizet alarmi
     String endReason = "";
@@ -65,7 +66,11 @@ public class BlackoutSim {
         detections.addAll(o.detections);
     }
 
-    void say(String code, String text) { lastMsg = code; log.add("[" + tickNo + " s] " + text); }
+    void say(String code, String text) { lastMsg = code; logCodes.add(code); log.add("[" + tickNo + " s] " + text); }
+
+    // ---- Kontrata e leximit për UI-në (UI nuk e njeh formatin e brendshëm të dyerve) ----
+    /** Sekondat e mbetura për derën e mbyllur në (x,y), ose null nëse dera është e hapur. */
+    Integer doorTimer(int x, int y) { return doors.get(x + "," + y); }
 
     boolean outside(int x, int y) { return x < 0 || y < 0 || x >= w || y >= h; }
 
@@ -251,6 +256,11 @@ public class BlackoutSim {
         Level(String name, String[] rows, int budget, int grace, EnumSet<Defense> allowed, String[] script, String solution) {
             this.name = name; this.rows = rows; this.budget = budget; this.grace = grace;
             this.allowed = allowed; this.script = script; this.solution = solution;
+        }
+        /** Emri i shkurtër për HUD-in, p.sh. "Rojet". */
+        String shortName() {
+            int a = name.indexOf("- ") + 2, b = name.indexOf(" (");
+            return b > a ? name.substring(a, b) : name.substring(a);
         }
         BlackoutSim start() {
             BlackoutSim s = new BlackoutSim(rows);

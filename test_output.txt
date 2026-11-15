@@ -1,3 +1,4 @@
+== java BlackoutSim (rregullat dhe nivelet) ==
 T01 | PASS | Lëvizje normale djathtas | pos=(2,1) t=89
 T02 | PASS | Marrja e sendit kur hyn në qelizën I | hasItem=true msg=ITEM
 T03 | PASS | Fitore e hajdutit: send + dalje, pikët 100+2*t+50 | status=THIEF_WINS score=326
@@ -23,3 +24,10 @@ T22 | PASS | Niveli 2 - Kamerat (core challenge): zgjidhja e ruajtur fiton, BFS 
 T23 | PASS | Niveli 3 - Dyert (advanced challenge): zgjidhja e ruajtur fiton, BFS gjen zgjidhje, rruga më e shkurtër naive humb | zgjidhja=THIEF_WINS 244 (43 s), BFS=43 s naive=THIEF_CAUGHT
 
 REZULTATI: 23 kaluan, 0 dështuan
+
+== java Progress (ruajtja e progresit) ==
+P01 | PASS | Pa skedar: hapet vetëm niveli 1, rekordi 0
+P02 | PASS | Fitorja ruhet në disk: niveli 2 hapet, rekordi 284 nuk zëvendësohet nga 200
+P03 | PASS | Skedar i dëmtuar: loja nuk rrëzohet, kthehet në vlerat fillestare
+
+REZULTATI: 3 kaluan, 0 dështuan
