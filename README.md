@@ -61,15 +61,6 @@ Kërkon Java 17+.
 ## Çfarë u provua
 - Të tri nivelet: zgjidhja fiton (23 s / 44 s / 43 s), rruga më e shkurtër naive kapet.
 - Verifikuesi gjeti që harta e prototipit të letrës nuk kishte zgjidhje (rojet mbyllnin hyrjen me shikim); rojet u zhvendosën.
-- Playtest me ekip tjetër: **nuk është bërë ende** (shablloni në GDD v1.1, seksioni 6.2).
 
-## Backlog
-| Detyra | Përgjegjësi |
-|---|---|
-| Loja në Unity: skena 2D, WASD + maus, koni i shikimit, vizual/audio i feedback-ut | Yllka |
-| AI e mbrojtësit (tani vetëm skenarë), fog of war, gjenerimi i hartave me BFS | Melos |
-| Playtest me ekip tjetër, balancimi i pikëve (hajduti deri ~326, mbrojtësi ~189) | Glauk |
-| Dyert me kod (të shtyra; niveli 3 përdor dyert e zakonshme) | Ekipi |
 
-## Çfarë nuk përfshihet
-Multiplayer në rrjet, grafikë 3D, histori/narrativë, tingull i personalizuar, ruajtje në server.
+
